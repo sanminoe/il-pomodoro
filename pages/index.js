@@ -135,19 +135,19 @@ export default function Home(props) {
 		>
 			{/* Timer */}
 			<div
-				className={[
-					styles.timerWrapper,
-					theme === 'dark' ? 'bg-gray-900' : 'bg-white',
-					theme === 'dark' ? 'text-white' : 'text-black'
-				].join(' ')}
+				className={`
+					${styles.timerWrapper} 
+					${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} 
+					${theme === 'dark' ? 'text-white' : 'text-black'}
+				`}
 			>
 				<div className="w-full flex justify-center">
 					<div className="flex justify-between w-10/12 my-4 text-2xl">
-						<Button toolTip={'Information'}>
-							<IoIosInformationCircleOutline />
+						<Button theme={theme} toolTip={'Information'}>
+							<IoIosInformationCircleOutline className="transition-transform transform active:scale-125" />
 						</Button>
-						<Button toolTip={'Reset'} onClick={resetPomodoroHandler}>
-							<BiRefresh />
+						<Button theme={theme} toolTip={'Reset'} onClick={resetPomodoroHandler}>
+							<BiRefresh className="transition-transform transform active:rotate-180" />
 						</Button>
 					</div>
 				</div>
@@ -163,10 +163,10 @@ export default function Home(props) {
 
 				<div className="w-full flex justify-center">
 					<div className="flex justify-between w-10/12 my-4 text-2xl">
-						<Button toolTip={'Switch Theme'} onClick={switchThemeHandler}>
-							<IoIosColorWand />
+						<Button theme={theme} toolTip={'Switch Theme'} onClick={switchThemeHandler}>
+							<IoIosColorWand className="transition-transform transform active:scale-125" />
 						</Button>
-						<Button toolTip={'Sound'} onClick={soundVolumeHandler}>
+						<Button toolTip={'Sound'} theme={theme} onClick={soundVolumeHandler}>
 							{isMuted ? <BsVolumeMute /> : <BsVolumeUp />}
 						</Button>
 					</div>

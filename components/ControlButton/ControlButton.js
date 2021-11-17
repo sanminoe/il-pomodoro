@@ -7,7 +7,7 @@ const ControlButton = (props) => {
 				: 'text-green-500'} flex justify-center items-center rounded-full hover:cursor-pointer ${props.theme ===
 			'dark'
 				? 'hover:bg-light-dark'
-				: 'hover:bg-lighter-dark'}`}
+				: 'hover:bg-lighter-dark'} mb-4`}
 			onClick={props.onClick}
 		>
 			{props.children}
