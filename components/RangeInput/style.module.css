@@ -1,0 +1,14 @@
+.field {
+	margin: 0;
+}
+.field::-webkit-inner-spin-button,
+.field::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+
+.field[type=number] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
