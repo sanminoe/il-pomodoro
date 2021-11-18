@@ -1,4 +1,4 @@
-import RangeInput from '../../components/RangeInput/RangeInput';
+import NumberInput from '../../components/NumberInput/NumberInput';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { useContext, useState } from 'react';
@@ -99,7 +99,7 @@ export default function Createsession(props) {
 	};
 	let theme = configCtx.theme;
 	let inputsElements = inputs.map((i) => (
-		<RangeInput
+		<NumberInput
 			name={i.name}
 			inputName={i.name}
 			key={i.id}

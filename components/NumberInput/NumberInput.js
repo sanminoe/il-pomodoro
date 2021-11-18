@@ -1,6 +1,6 @@
 import ButtonPlusMinus from '../ButtonPlusMinus/ButtonPlusMinus';
 import style from './style.module.css';
-export default function RangeInput(props) {
+export default function NumberInput(props) {
 	return (
 		<div className="w-full flex flex-col items-center my-4">
 			<label>{props.title}</label>

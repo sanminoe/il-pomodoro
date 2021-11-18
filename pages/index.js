@@ -6,14 +6,12 @@ import 'react-circular-progressbar/dist/styles.css';
 import styles from './style.module.css';
 import { motion } from 'framer-motion';
 import Clock from '../components/Clock/Clock';
-import { useRouter } from 'next/router';
 import ConfigContext from '../store/configStore';
 import Button from '../components/Button/Button';
 import ControlButton from '../components/ControlButton/ControlButton';
 import audioFile from '../public/tone.mp3';
 
 export default function Home(props) {
-	const router = useRouter();
 	const [ audio, setAudio ] = useState();
 	const [ audioPlaying, setAudioPlaying ] = useState(false);
 
