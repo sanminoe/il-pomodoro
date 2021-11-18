@@ -10,7 +10,11 @@ const ConfigContext = React.createContext({
 		shortBreakTime: 5,
 		longBreakTime: 10
 	},
-	setTime: (focus, sBreak, lBreak) => {}
+	setTime: (focus, sBreak, lBreak) => {},
+	information: {
+		totalTime: 0
+	},
+	setInformationHandler: () => {}
 });
 
 export function ConfigContextProvider(props) {

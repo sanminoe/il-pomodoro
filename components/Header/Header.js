@@ -14,7 +14,7 @@ export default (props) => {
 		>
 			<div className="flex justify-between w-full mt-2">
 				<div>
-					<h1 className="after:block after:bg-red-600 after:contet-['Title']">Pomo</h1>
+					<h1 className="text-xl">Pomo</h1>
 				</div>
 				<div>
 					{router.route === '/' && (

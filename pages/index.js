@@ -10,10 +10,15 @@ import { useRouter } from 'next/router';
 import ConfigContext from '../store/configStore';
 import Button from '../components/Button/Button';
 import ControlButton from '../components/ControlButton/ControlButton';
+import audioFile from '../public/tone.mp3';
 
 export default function Home(props) {
 	const router = useRouter();
+	const [ audio, setAudio ] = useState();
+	const [ audioPlaying, setAudioPlaying ] = useState(false);
+
 	let configCtx = useContext(ConfigContext);
+
 	const [ currentRound, setCurrentRound ] = useState(0);
 	const phases = [ 'Focus', 'Short break', 'Break' ];
 	const [ timerValue, setTimerValue ] = useState(configCtx.timing.focusTime * 60);
@@ -54,22 +59,31 @@ export default function Home(props) {
 	};
 
 	let resetPomodoroHandler = () => {
-		setTimerValue(totalValueTimer);
+		setTimerValue(configCtx.timing.focusTime * 60);
 		setCurrentRound(0);
 		setPhase(0);
-		clearInterval(timerId);
 		setIsPlaying(false);
+		clearInterval(timerId);
 		clearTimeout(pauseTimerId);
 	};
 	let soundVolumeHandler = () => {
+		audio.pause();
+		audio.currentTime = 0;
 		setIsMuted(!isMuted);
 	};
 
 	useEffect(() => {
+		setAudio(new Audio(audioFile));
 		setTimerValue(configCtx.timing.focusTime * 60);
 		setTotalValueTimer(configCtx.timing.focusTime * 60);
 		setCurrentRound(0);
 		setPhase(0);
+		clearInterval(timerId);
+		clearTimeout(pauseTimerId);
+		if (audio) {
+			audio.addEventListener('ended', () => setAudioPlaying(false));
+			return audio.removeEventListener('ended', () => setAudioPlaying(false));
+		}
 	}, []);
 	let switchThemeHandler = () => {
 		configCtx.changeTheme('light');
@@ -78,6 +92,7 @@ export default function Home(props) {
 		() => {
 			if (timerValue < 0) {
 				setIsPlaying(false);
+				setAudioPlaying(true);
 				setPauseTimerId(
 					setTimeout(() => {
 						setIsPlaying(true);
@@ -93,6 +108,7 @@ export default function Home(props) {
 						setCurrentRound(currentRound + 1);
 					}
 					else {
+						// Long break
 						setPhase(2);
 						setTimerValue(configCtx.timing.longBreakTime * 60);
 						setTotalValueTimer(configCtx.timing.longBreakTime * 60);
@@ -114,18 +130,38 @@ export default function Home(props) {
 				return () => clearInterval(timerId);
 			}
 			if (isPlaying) {
-				let timerid = setInterval(startTimer, 1000);
+				setAudioPlaying(false);
+				let timerid = setInterval(startTimer, 100);
 				setTimerId(timerid);
 			}
 			return () => {
+				setAudioPlaying(false);
 				clearInterval(timerId);
 				clearTimeout(pauseTimerId);
 			};
 		},
 		[ timerValue, isPlaying ]
 	);
+	useEffect(
+		() => {
+			if (audio) {
+				audio.crossOrigin = 'anonymous';
+				audio.currentTime = 0;
+				if (isMuted) {
+					return;
+				}
+
+				if (audioPlaying) {
+					audio.play();
+				}
+				else {
+					audio.pause();
+				}
+			}
+		},
+		[ audioPlaying ]
+	);
 	const theme = configCtx.theme;
-	// current time / total time for each phase * 100
 	return (
 		<motion.main
 			initial={{ opacity: 0, x: -200 }}
@@ -137,15 +173,14 @@ export default function Home(props) {
 			<div
 				className={`
 					${styles.timerWrapper} 
-					${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} 
-					${theme === 'dark' ? 'text-white' : 'text-black'}
+					${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'} 
 				`}
 			>
 				<div className="w-full flex justify-center">
 					<div className="flex justify-between w-10/12 my-4 text-2xl">
-						<Button theme={theme} toolTip={'Information'}>
+						{/* <Button theme={theme} toolTip={'Information'}>
 							<IoIosInformationCircleOutline className="transition-transform transform active:scale-125" />
-						</Button>
+						</Button> */}
 						<Button theme={theme} toolTip={'Reset'} onClick={resetPomodoroHandler}>
 							<BiRefresh className="transition-transform transform active:rotate-180" />
 						</Button>
