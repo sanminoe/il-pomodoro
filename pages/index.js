@@ -101,7 +101,7 @@ export default function Home(props) {
 
 				if (phase === 0) {
 					// Break phase
-					if (currentRound !== 3) {
+					if (currentRound !== 4) {
 						setPhase(1);
 						setTimerValue(configCtx.timing.shortBreakTime * 60);
 						setTotalValueTimer(configCtx.timing.shortBreakTime * 60);
@@ -131,7 +131,7 @@ export default function Home(props) {
 			}
 			if (isPlaying) {
 				setAudioPlaying(false);
-				let timerid = setInterval(startTimer, 100);
+				let timerid = setInterval(startTimer, 1000);
 				setTimerId(timerid);
 			}
 			return () => {
