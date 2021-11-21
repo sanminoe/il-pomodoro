@@ -36,13 +36,13 @@ export default function Clock(props) {
 			initial="hidden"
 			animate="enter"
 			exit="exit"
-			className="w-72 h-72 relative mx-5 "
+			className="w-11/12 h-5/6 mt-4 relative"
 		>
-			<div
+			{/* <div
 				className={`w-full h-full border-4 ${configCtx.theme === 'dark'
 					? 'border-white'
 					: 'border-gray-900'} absolute top-0 rounded-full transform scale-95`}
-			/>
+			/> */}
 			<CircularProgressbarWithChildren
 				value={timerPercentage * 100}
 				counterClockwise={false}
@@ -65,7 +65,7 @@ export default function Clock(props) {
 							animate="enter"
 							exit="exit"
 							transition={{ type: 'linear', delay: 0.6 }}
-							className="text-2xl"
+							className="text-2xl 2xl:text-6xl"
 						>
 							{props.phase}
 						</motion.p>
@@ -76,7 +76,7 @@ export default function Clock(props) {
 							initial="hidden"
 							animate="enter"
 							transition={{ type: 'linear', delay: 0.8 }}
-							className="text-4xl"
+							className="text-4xl 2xl:text-5xl"
 						>
 							{formatTime(props.timerValue)}
 						</motion.p>

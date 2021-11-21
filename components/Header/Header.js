@@ -10,20 +10,22 @@ export default (props) => {
 
 	return (
 		<header
-			className={`flex justify-center ${configCtx.theme === 'dark' ? 'text-white' : 'text-black'} w-10/12 z-20`}
+			className={`flex justify-center ${configCtx.theme === 'dark'
+				? 'text-white'
+				: 'text-black'} h-12 w-10/12 z-20`}
 		>
-			<div className="flex justify-between w-full mt-2">
+			<div className="flex justify-between items-center w-full h-full">
 				<div>
-					<h1 className="text-xl">Pomo</h1>
+					<h1 className="text-xl 2xl:text-5xl">Pomo</h1>
 				</div>
-				<div>
+				<div className="h-full">
 					{router.route === '/' && (
-						<button className={style.settingButton}>
+						<button className={`${style.settingButton}`}>
 							<Link href="/setting">
-								<div className="flex">
+								<div className="flex w-12 h-full items-center justify-center">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
-										className="h-6 w-6 transform hover:rotate-90 transition-transform"
+										className="w-full h-full transform hover:rotate-90 transition-transform"
 										fill="none"
 										viewBox="0 0 24 24"
 										stroke="currentColor"

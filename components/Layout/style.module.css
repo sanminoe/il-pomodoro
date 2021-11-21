@@ -1,18 +1,14 @@
 .wavesContainer {
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	height: 100vh;
+	height: 100%;
 	width: 100%;
-	overflow: hidden;
 	z-index: 0;
 }
 
 .wave {
 	position: absolute;
-	width: 1400px;
+	width: 100%;
 	bottom: 0;
-	top: 60%;
 	left: 0;
 	height: 100%;
 	z-index: inherit;

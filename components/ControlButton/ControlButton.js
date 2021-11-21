@@ -2,12 +2,11 @@ const ControlButton = (props) => {
 	const theme = props.theme;
 	return (
 		<button
-			className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} ${props.controlType === 'stop'
+			className={`${theme === 'dark'
+				? 'bg-gray-900 hover:bg-light-dark'
+				: 'bg-white hover:bg-lighter-dark'} ${props.controlType === 'stop'
 				? 'text-red-500'
-				: 'text-green-500'} flex justify-center items-center rounded-full hover:cursor-pointer ${props.theme ===
-			'dark'
-				? 'hover:bg-light-dark'
-				: 'hover:bg-lighter-dark'} mb-4`}
+				: 'text-green-500'} flex justify-center items-center rounded-full hover:cursor-pointer w-2/12`}
 			onClick={props.onClick}
 		>
 			{props.children}

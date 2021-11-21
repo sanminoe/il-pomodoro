@@ -1,14 +1,15 @@
 .settingButton {
 	display: flex;
+	align-items: center;
 	position: relative;
 }
-.settingButton:hover::after {
+.settingButton:hover::before {
 	visibility: visible;
 }
 
-.settingButton::after {
+.settingButton::before {
 	content: "Settings";
 	position: absolute;
-	left: 100%;
+	right: 100%;
 	visibility: hidden;
 }

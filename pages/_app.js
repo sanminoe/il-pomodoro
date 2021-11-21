@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import '../style.css';
+import './main.css';
 import { ConfigContextProvider } from '../store/configStore';
 import { AnimatePresence } from 'framer-motion';
 import Layout from '../components/Layout/Layout';

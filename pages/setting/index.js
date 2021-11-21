@@ -119,9 +119,9 @@ export default function Createsession(props) {
 			initial="hidden"
 			animate="enter"
 			exit="exit"
-			className={`flex flex-col items-center w-6/12 mt-4 mb-4 ${theme === 'light'
-				? 'bg-white'
-				: 'bg-gray-900'} rounded-xl ${style.setting} ${theme === 'light' ? 'text-black' : 'text-white'}`}
+			className={`flex flex-col items-center w-full my-4 ${theme === 'light'
+				? 'bg-white text-black'
+				: 'bg-gray-900 text-white'} rounded-xl w-full ${style.setting}}`}
 		>
 			<div className="mt-4">
 				<h1 className="text-3xl">Settings</h1>
@@ -129,9 +129,17 @@ export default function Createsession(props) {
 			<div className=" w-full">
 				<form className="w-full flex flex-col mt-4 items-center">{inputsElements}</form>
 			</div>
-			<div className="w-1/2 flex justify-center my-4">
+			<div className="w-5/6 flex justify-between my-4">
 				<button
-					className="bg-red-700 text-white w-full h-10 rounded hover:bg-red-600"
+					className={` w-24 h-10 rounded hover:border ${theme === 'dark'
+						? 'border-white text-white'
+						: 'border-gray-900 text-black'}`}
+					onClick={() => router.push('/')}
+				>
+					<span>Cancel</span>
+				</button>
+				<button
+					className="bg-red-700 text-white w-24 h-10 rounded hover:bg-red-600"
 					onClick={saveConfigurationHandler}
 				>
 					<span>Start</span>

@@ -1,15 +1,18 @@
 import Header from '../Header/Header';
-import wave from '../../public/wave.svg';
-import style from './style.module.css';
 import ConfigContext from '../../store/configStore';
 import { useContext } from 'react';
+import style from './style.module.css';
 export default ({ children, page, redirectTo }) => {
 	const configCtx = useContext(ConfigContext);
 	return (
-		<div className={`flex flex-col items-center ${configCtx.theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
+		<div
+			className={`flex h-[100vh] flex-col items-center ${configCtx.theme === 'dark'
+				? 'bg-gray-900'
+				: 'bg-white'}`}
+		>
 			<Header page={page} redirectTo={redirectTo} />
-			<div className={style.wavesContainer}>
-				<div className={style.wave}>
+			<div className={style.wavesContainer + ' overflow-hidden'}>
+				<div className={style.wave + ' top-3/4'}>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
 						<path
 							fill={`${configCtx.theme === 'dark' ? 'rgb(239,68,68)' : 'rgb(16, 185, 129)'}`}
@@ -19,7 +22,7 @@ export default ({ children, page, redirectTo }) => {
 					</svg>
 				</div>
 			</div>
-			<div className="w-5/6 flex justify-center relative overflow-hidden z-10">{children}</div>
+			<div className="w-5/6 z-10 h-[fit-content] overflow-hidden">{children}</div>
 		</div>
 	);
 };

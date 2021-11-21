@@ -165,39 +165,33 @@ export default function Home(props) {
 			initial={{ opacity: 0, x: -200 }}
 			animate={{ opacity: 1, x: 0 }}
 			exit={{ opacity: 0, x: -200 }}
-			className="my-6"
+			className="flex justify-center h-[fit-content] w-full my-5"
 		>
 			{/* Timer */}
 			<div
-				className={`
-					${styles.timerWrapper} 
-					${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'} 
-				`}
+				className={`${styles.timerWrapper} ${theme === 'dark'
+					? 'bg-gray-900 text-white'
+					: 'bg-white text-black'} xl:w-3/12`}
 			>
-				<div className="w-full flex justify-center">
-					<div className="flex justify-between w-10/12 my-4 text-2xl">
-						{/* <Button theme={theme} toolTip={'Information'}>
-							<IoIosInformationCircleOutline className="transition-transform transform active:scale-125" />
-						</Button> */}
-						<Button theme={theme} toolTip={'Reset'} onClick={resetPomodoroHandler}>
-							<BiRefresh className="transition-transform transform active:rotate-180" />
-						</Button>
-					</div>
+				<div className="flex justify-center w-full">
+					<Clock
+						timerValue={timerValue}
+						totalValueTimer={totalValueTimer}
+						phase={phases[phase]}
+						currentRound={currentRound}
+						isVisible={isClockVisible}
+						isPlaying={isPlaying}
+						key="clock"
+					/>
 				</div>
-				<Clock
-					timerValue={timerValue}
-					totalValueTimer={totalValueTimer}
-					phase={phases[phase]}
-					currentRound={currentRound}
-					isVisible={isClockVisible}
-					isPlaying={isPlaying}
-					key="clock"
-				/>
 
 				<div className="w-full flex justify-center">
-					<div className="flex justify-between w-10/12 my-4 text-2xl">
+					<div className="flex justify-between w-10/12 my-4 text-2xl 2xl:text-4xl">
 						<Button theme={theme} toolTip={'Switch Theme'} onClick={switchThemeHandler}>
 							<IoIosColorWand className="transition-transform transform active:scale-125" />
+						</Button>
+						<Button theme={theme} toolTip={'Reset'} onClick={resetPomodoroHandler}>
+							<BiRefresh className="transition-transform transform active:rotate-180" />
 						</Button>
 						<Button toolTip={'Sound'} theme={theme} onClick={soundVolumeHandler}>
 							{isMuted ? <BsVolumeMute /> : <BsVolumeUp />}
@@ -205,16 +199,16 @@ export default function Home(props) {
 					</div>
 				</div>
 
-				<section className="flex justify-evenly h-20 my-2">
+				<section className="flex justify-evenly items-center my-2 w-full">
 					<ControlButton onClick={() => handleStartStop('play')} theme={theme} controlType="play">
 						{isPlaying ? (
-							<BsPauseFill className="h-full w-7/12" />
+							<BsPauseFill className="h-full w-full" />
 						) : (
-							<BsPlayFill className="h-full w-7/12" />
+							<BsPlayFill className="h-full w-full" />
 						)}
 					</ControlButton>
 					<ControlButton onClick={() => handleStartStop('stop')} theme={theme} controlType="stop">
-						<BsStopFill className="h-full w-7/12" />
+						<BsStopFill className="h-full w-full" />
 					</ControlButton>
 				</section>
 			</div>
